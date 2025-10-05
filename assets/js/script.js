@@ -63,12 +63,13 @@ function closeModal() {
 // ---- Toggle “Other” Field ----
 serviceSelect.addEventListener("change", () => {
   if (serviceSelect.value === "Other") {
-    otherField.classList.add("show");
+    otherField.style.display = "block";
   } else {
-    otherField.classList.remove("show");
-    document.getElementById("otherService").value = "";
+    otherField.style.display = "none";
+    document.getElementById("other_service").value = "";
   }
 });
+
 
 // ---- Form Submission ----
 form.addEventListener("submit", (e) => {
