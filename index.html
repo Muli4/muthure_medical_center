@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muthure Medical Centre | Affordable, Professional and Innovative Health Care</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Muthure Medical Centre offers affordable, professional and innovative health care services. Visit us for medical consultations, diagnostics, pharmacy services, and more.">
+  <meta name="keywords" content="Muthure Medical Centre, Medical Centre Kenya, Health Care, Affordable Healthcare, Hospital, Pharmacy, Diagnostics, Medical Services">
+  <meta name="author" content="Muthure Medical Centre">
+  
+  <!-- Social Media Open Graph -->
+  <meta property="og:title" content="Muthure Medical Centre">
+  <meta property="og:description" content="Affordable, Professional and Innovative Health Care.">
+  <meta property="og:image" content="assets/images/logo4.png">
+  <meta property="og:url" content="https://www.muthuremedicalcentre.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/logo.jpg">
+
+  <!-- Icons (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- 🔹 Subheader with Contact Info -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="contact-info">
+        <span><i class="fa fa-map-marker-alt"></i> Nairobi, Kenya</span>
+        <span><i class="fa fa-phone"></i> +254 712 345 678</span>
+        <span><i class="fa fa-envelope"></i> info@muthuremedicalcentre.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Main Header -->
+  <header class="site-header">
+    <div class="container">
+      
+      <!-- Logo + Hospital Name -->
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo4.png" alt="Muthure Medical Centre Logo">
+          <span class="hospital-name">Muthure Medical Centre</span>
+        </a>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="navbar" id="navbar">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          
+          <!-- Dropdown -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Services <i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="services.html#consultations">Consultations</a></li>
+              <li><a href="services.html#diagnostics">Diagnostics</a></li>
+              <li><a href="services.html#pharmacy">Pharmacy</a></li>
+              <li><a href="services.html#emergency">Emergency Care</a></li>
+            </ul>
+          </li>
+
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu Icon -->
+      <div class="menu-toggle" id="menu-toggle">
+        ☰
+      </div>
+    </div>
+  </header>
+<!-- ===========================
+     Hero Section
+=========================== -->
+<section class="hero">
+  <div class="hero-slider">
+    <div class="slide active" style="background-image: url('assets/images/hero1.jpg');"></div>
+    <div class="slide" style="background-image: url('assets/images/hero2.jpg');"></div>
+    <div class="slide" style="background-image: url('assets/images/hero3.jpg');"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-content">
+    <h1>Compassionate <span>Healthcare</span> for Every Family</h1>
+    <p>Your health is our priority. We provide quality medical care with modern facilities and a personal touch.</p>
+    <div class="hero-buttons">
+      <a href="services.html" class="btn-primary">Explore Services</a>
+      <a href="#" class="btn-secondary" id="openAppointment">Book Appointment</a>
+    </div>
+  </div>
+</section>
+
+<!-- Appointment Modal -->
+<div id="appointmentModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h2>Book Appointment</h2>
+
+    <form id="appointmentForm">
+      <!-- Select Service -->
+      <label for="service">Select Service:</label>
+      <select id="service" name="service" required>
+        <option value="">-- Select Service --</option>
+        <option value="Consultation">Consultation</option>
+        <option value="Checkup">Checkup</option>
+        <option value="Lab Test">Lab Test</option>
+        <option value="Physiotherapy">Physiotherapy</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <!-- Hidden field for "Other" -->
+      <div id="otherServiceField" style="display: none;">
+        <label for="other_service">Please describe your service:</label>
+        <input
+          type="text"
+          id="other_service"
+          name="other_service"
+          placeholder="Describe your service"
+        />
+      </div>
+
+      <!-- Date -->
+      <label for="date">Select Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <!-- Time -->
+      <label for="time">Select Time:</label>
+      <input type="time" id="time" name="time" required>
+
+      <!-- Name -->
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Full Name" required>
+
+      <!-- Email -->
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" placeholder="example@email.com" required>
+
+      <!-- Phone -->
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="+254 7XX XXX XXX" required>
+
+      <button type="submit" class="btn-primary submit-btn">Submit</button>
+    </form>
+
+    <!-- Success Message -->
+    <div id="successMessage" style="display:none; text-align:center; padding:20px;">
+      <h3 style="color:var(--secondary-color);">✅ Appointment Booked Successfully!</h3>
+      <p>We’ll contact you shortly to confirm your appointment.</p>
+      <button id="closeSuccess" class="btn-primary" style="margin-top:10px;">Close</button>
+    </div>
+  </div>
+</div>
+
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

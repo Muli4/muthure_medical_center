@@ -1,0 +1,580 @@
+/* =========================================
+   Global Theme Variables
+========================================= */
+:root {
+  --primary-color: #0077b6;
+  --secondary-color: #023e8a;
+  --accent-color: #ffd60a;
+  --hover-color: #caf0f8;
+  --text-color: #333333;
+  --light-bg: #f8f9fa;
+  --white: #ffffff;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: var(--light-bg);
+  color: var(--text-color);
+}
+
+/* Top Subheader */
+.top-bar {
+  background: var(--secondary-color);
+  color: var(--white);
+  font-size: 14px;
+  padding: 6px 0;
+}
+
+.top-bar .container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.contact-info span {
+  margin-left: 20px;
+}
+
+.contact-info i {
+  margin-right: 6px;
+  color: var(--accent-color);
+}
+
+/* Main Header */
+.site-header {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.site-header .container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 55px;
+  margin-right: 10px;
+}
+
+.logo .hospital-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--white);
+}
+
+/* Navigation */
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+  position: relative;
+}
+
+.navbar ul li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: bold;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+/* Hover underline effect */
+.navbar ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 3px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: var(--hover-color);
+}
+
+.navbar ul li a:hover::after {
+  width: 100%;
+}
+
+/* Active link */
+.navbar ul li a.active {
+  color: var(--accent-color);
+}
+
+.navbar ul li a.active::after {
+  width: 100%;
+  background: var(--accent-color);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  display: none !important;   /* always hidden by default */
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: var(--secondary-color);
+  list-style: none;
+  padding: 10px 0;
+  min-width: 180px;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 8px 15px;
+  color: var(--white);
+  font-weight: normal;
+  transition: background 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: var(--primary-color);
+  color: var(--accent-color);
+}
+
+/* Show dropdown on hover (desktop only) */
+.navbar ul li.dropdown:hover > .dropdown-menu {
+  display: block !important;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: var(--primary-color);
+    text-align: center;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    padding: 20px 0;
+  }
+
+  .navbar ul li {
+    margin: 15px 0;
+  }
+
+  .navbar ul li a::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dropdown-menu {
+    position: static;
+    background: var(--secondary-color);
+    border-radius: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+/* ===========================
+   Hero Section
+=========================== */
+.hero {
+  position: relative;
+  height: 75vh; /* slightly reduced for better balance */
+  overflow: hidden;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1s ease-in-out, transform 10s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1); /* smooth zoom-in effect */
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 62, 138, 0.6);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.hero-content h1 {
+  font-size: 2.6rem;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+.hero-content h1 span {
+  color: var(--accent-color);
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-top: 25px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 1.2s;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 1.6s;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--accent-color);
+  color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background: var(--white);
+  color: var(--primary-color);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-color);
+  color: var(--secondary-color);
+}
+
+/* ===========================
+   Animations
+=========================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   Hero Section (Responsive)
+=========================== */
+@media (max-width: 768px) {
+  .hero {
+    height: 75vh;
+    padding: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;  /* stack vertically */
+    gap: 12px;               /* space between buttons */
+    align-items: center;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;   /* make buttons full width on small screens */
+    max-width: 280px;
+  }
+}
+
+/* ===========================
+   Appointment Modal (Enhanced + Animated "Other" Field)
+=========================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 62, 138, 0.85);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+  background: var(--white);
+  color: var(--text-color);
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 430px;
+  max-height: 70vh;              /* Limit modal height */
+  overflow-y: auto;              /* Enable scroll inside */
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.4s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary-color) #eee;
+}
+
+/* Smooth fade-in background */
+@keyframes fadeIn {
+  from {
+    background: rgba(2, 62, 138, 0);
+  }
+  to {
+    background: rgba(2, 62, 138, 0.85);
+  }
+}
+
+/* Custom scroll styling */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Headings */
+.modal-content h2 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 18px;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* Labels & Inputs */
+.modal-content label {
+  display: block;
+  font-weight: 600;
+  margin: 8px 0 5px;
+  font-size: 0.95rem;
+  color: var(--secondary-color);
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px rgba(0, 119, 182, 0.25);
+}
+
+/* Animated "Other Service" field */
+#otherServiceField {
+  display: none;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: all 0.4s ease;
+}
+
+#otherServiceField.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  background: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--secondary-color);
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.close-btn:hover {
+  color: var(--accent-color);
+  transform: rotate(90deg);
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success Message Section */
+#successMessage {
+  animation: fadeIn 0.4s ease;
+}
+
+#successMessage h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .modal-content {
+    max-width: 90%;
+    max-height: 80vh;
+    padding: 20px 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.25rem;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+  }
+}
+
+
+
+/* Popup Animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
