@@ -476,7 +476,7 @@ body {
 /* Animated "Other Service" field */
 #otherServiceField {
   display: none;
-  opacity: 0;
+  opacity: 1;
   transform: translateY(-5px);
   transition: all 0.4s ease;
 }
@@ -564,8 +564,6 @@ body {
     font-size: 0.95rem;
   }
 }
-
-
 
 /* Popup Animation */
 @keyframes fadeInScale {
